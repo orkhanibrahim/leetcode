@@ -32,17 +32,22 @@ Only one valid answer exists.
 * */
 
 import java.util.Arrays;
+import java.util.HashMap;
 
-public class TwoSumUsingNestedForLoop {
+public class TwoSumUsingHashTable {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(twoSumUsiForLoop(new int[]{2, 3, 4,6,8,9}, 17)));
+        twoSum(new int[]{2, 3, 4,6,8,9}, 17);
     }
-    public static int[] twoSumUsiForLoop(int [] nums, int target){
-        for(int i=0;i<nums.length;i++){
-            for(int j=i+1; j<nums.length;j++){
-                if(target-nums[i] == nums[j]){
-                    return new int[]{i, j};
-                }
+
+    public static int[] twoSum(int [] nums, int target){
+        HashMap<Integer,Integer> hashMap = new HashMap<>();
+        for(int i =0; i<nums.length; i++){
+            hashMap.put(nums[i],i);
+        }
+        for(int i=0; i<nums.length;i++){
+            int secondNum = target - nums[i];
+            if(hashMap.containsKey(secondNum) && hashMap.get(secondNum) !=i){
+               return new int[]{i,hashMap.get(secondNum)};
             }
         }
         return new int[]{-1,-1};
