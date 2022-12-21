@@ -30,7 +30,7 @@ s consists of parentheses only '()[]{}'.*/
 
 public class ValidParentheses {
     public static void main(String[] args) {
-        isValid("()");
+        isValid("(]");
     }
 
     public static boolean isValid(String s) {
@@ -42,8 +42,8 @@ public class ValidParentheses {
                 stack.push('}');
             } else if (c =='[') {
                 stack.push(']');
-            } else if (stack.isEmpty() || stack.pop() != c) {
-                System.out.println("=>"+stack.isEmpty());
+            } else if (stack.pop() != c) {
+                System.out.println(stack.isEmpty());
                 return false;
             }
         }
